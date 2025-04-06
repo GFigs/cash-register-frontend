@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import CashRegisterPage from '@/pages/CashRegisterPage';
+import CashRegisterPage from '../pages/CashRegisterPage';
 
 const AppRoutes = () => {
     return (
