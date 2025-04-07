@@ -1,54 +1,85 @@
-# React + TypeScript + Vite
+# Cashier App - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend de la aplicación de caja registradora desarrollada para la evaluación técnica de Amenitiz. Esta aplicación permite al usuario agregar productos al carrito, aplicar promociones automáticamente y calcular el precio total de la compra.
 
-Currently, two official plugins are available:
+## Tecnologías utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [React.js]+ [TypeScript]
+- [Vite]
+- [Tailwind CSS]
+- [Axios]
+- [React Router]
 
-## Expanding the ESLint configuration
+## Estructura de carpetas
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+src/  
+├── assets/  
+├── components/  
+│   ├── cart-actions/  
+│   │   └── index.tsx  
+│   ├── display-total/  
+│   │   └── index.tsx  
+│   ├── product-code-input/  
+│   │   ├── AddButton.tsx  
+│   │   ├── index.tsx  
+│   │   ├── InputField.tsx  
+│   │   └── types.ts  
+│   ├── products-list/  
+│   │   ├── index.tsx  
+│   │   └── types.ts  
+│   ├── promotions-list/  
+│   │   ├── index.tsx  
+│   │   └── types.ts  
+│   └── sidebar/  
+│       ├── index.tsx  
+│       ├── SidebartItem.tsx  
+│       └── types.ts  
+├── hooks/  
+│   └── useCartManager.ts  
+├── pages/  
+│   └── CashRegisterPage/  
+│       └── index.tsx  
+├── routes/  
+│   └── index.tsx  
+├── utils/  
+│   └── axios.ts  
+├── App.tsx  
+├── index.css  
+├── main.tsx  
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Axios
+The base URL set is "http://localhost:3000", It is possible to change this in /src/utils/axios.ts
+
+## Funcionalidades
+
+- Agregar productos al carrito por código (GR1, SR1, CF1)
+- Visualizar productos agregados
+- Aplicación automática de promociones:
+  - **GR1 (Green Tea)**: 2x1
+  - **SR1 (Strawberries)**: 4.50€ c/u si compras 3 o más
+  - **CF1 (Coffee)**: 2/3 del precio si compras 3 o más
+- Mostrar total calculado
+- Mostrar promociones aplicadas y ahorro
+- Limpiar carrito con botón "Finalizar compra"
+
+## 📦 Instalación
+
+```
+bash
+git clone https://github.com/GFigs/cash-register-frontend
+cd cashier-app-frontend
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Flujo de trabajo
+- El usuario ingresa el código del producto (ej: GR1)
+- Se busca el producto con GET /products?search=GR1
+- Si es válido, se agrega al carrito
+- El usuario puede agregar más productos
+- Al agregar un producto se llama a POST /checkout enviando los códigos
+- Se muestra el total y las promociones aplicadas con el dinero ahorrado
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## Endpoints utilizados
+- GET /products?search=CODE — Buscar producto por código
+- POST /checkout — Calcular total y promociones aplicadas
