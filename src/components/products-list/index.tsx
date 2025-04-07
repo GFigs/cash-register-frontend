@@ -12,12 +12,16 @@ const ProductList = ({ products }: ProductListProps) => {
     return (
         <ul className="space-y-2">
             {products.map((product, index) => (
-                <li key={`${product.code}-${index}`}>
-                    <span>{product.name} ({product.code})</span>
-                    <span>{Number(product.price).toFixed(2)} €</span>
+                <li
+                    key={`${product.code}- ${index}`}
+                    className="flex justify-between items-center"
+                >
+                    <span>{product.code} - {product.name}</span>
+                    <span className="font-medium">{Number(product.price).toFixed(2)} €</span>
                 </li>
-            ))}
-        </ul>
+            ))
+            }
+        </ul >
     );
 };
 
