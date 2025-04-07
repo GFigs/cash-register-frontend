@@ -1,8 +1,8 @@
-# Cashier App - Frontend
+# Cash Register - Frontend
 
-Frontend de la aplicación de caja registradora desarrollada para la evaluación técnica de Amenitiz. Esta aplicación permite al usuario agregar productos al carrito, aplicar promociones automáticamente y calcular el precio total de la compra.
+This is the **React frontend** for the **Cash Register** application built as part of the Amenitiz technical evaluation.
 
-## Tecnologías utilizadas
+## Technologies
 
 - [React.js]+ [TypeScript]
 - [Vite]
@@ -10,7 +10,7 @@ Frontend de la aplicación de caja registradora desarrollada para la evaluación
 - [Axios]
 - [React Router]
 
-## Estructura de carpetas
+## Structure
 
 src/  
 ├── assets/  
@@ -50,19 +50,19 @@ src/
 ## Axios
 The base URL set is "http://localhost:3000", It is possible to change this in /src/utils/axios.ts
 
-## Funcionalidades
+## Funtionalities
 
-- Agregar productos al carrito por código (GR1, SR1, CF1)
-- Visualizar productos agregados
-- Aplicación automática de promociones:
+- Add products to the cart by code (GR1, SR1, CF1)
+- Visualise products 
+- Automatic promotion application:
   - **GR1 (Green Tea)**: 2x1
-  - **SR1 (Strawberries)**: 4.50€ c/u si compras 3 o más
-  - **CF1 (Coffee)**: 2/3 del precio si compras 3 o más
-- Mostrar total calculado
-- Mostrar promociones aplicadas y ahorro
-- Limpiar carrito con botón "Finalizar compra"
+  - **SR1 (Strawberries)**: 4.50€ if 3 or more
+  - **CF1 (Coffee)**: 2/3 if 3 or more
+- Display Total
+- Show promotions applied and money saved
+- Clean Cart
 
-## 📦 Instalación
+##  Setup
 
 ```
 bash
@@ -72,14 +72,14 @@ npm install
 npm run dev
 ```
 
-## Flujo de trabajo
-- El usuario ingresa el código del producto (ej: GR1)
-- Se busca el producto con GET /products?search=GR1
-- Si es válido, se agrega al carrito
-- El usuario puede agregar más productos
-- Al agregar un producto se llama a POST /checkout enviando los códigos
-- Se muestra el total y las promociones aplicadas con el dinero ahorrado
+## Workflor
+- User inputs a code
+- Search product with GET /products?search=GR1
+- if valid, add to cart
+- User can add multiple products
+- When a product is added we call POST /checkout sending this codes
+- Total and applied promotions are displayed
 
-## Endpoints utilizados
-- GET /products?search=CODE — Buscar producto por código
-- POST /checkout — Calcular total y promociones aplicadas
+## Endpoints 
+- GET /products?search=CODE — Search by product
+- POST /checkout — Compute total and receive applied promotions
